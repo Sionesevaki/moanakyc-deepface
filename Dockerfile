@@ -1,5 +1,8 @@
 FROM serengil/deepface:latest
 
+# Install PyTorch (CPU-only) for the anti-spoofing / liveness detection module (FasNet)
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
 # Pre-bake model weights into the image.
 # The upstream serengil/deepface_models GitHub repo was deleted (2026-03),
 # so runtime downloads fail. Both deepface and retina-face skip the download
